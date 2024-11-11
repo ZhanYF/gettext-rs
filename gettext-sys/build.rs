@@ -100,7 +100,8 @@ fn main() {
             println!("cargo:rustc-link-lib=dylib=pthread");
             println!("cargo:include={}/../usr/include", &gnu_root);
             return;
-        } else if target.contains("freebsd") {
+        } else if target.contains("freebsd") || target.contains("openbsd") {
+            // for OpenBSD and FreeBSD, use GNU gettext installed as a package
             println!("cargo:rustc-link-search=native=/usr/local/lib");
             println!("cargo:rustc-link-lib=dylib=intl");
             return;
